@@ -8,7 +8,7 @@ Global oy:="" ;output x i y
 Global x1:=0
 Global x2:=1920
 Global y1:=0
-Global y2:=1080  ;wielkość ekrany
+Global y2:=1080  ;wielkość ekranu
 
 
 Click17(){
@@ -27,8 +27,6 @@ if ErrorLevel{
 			}
 		Click, %ox%, %oy%
 }
-
-
 
 ClickStart(){
 
@@ -55,7 +53,6 @@ ImageSearch, ox, oy, x1, y1, x2, y2,*15 mission.png
 		}
 }
 
-
 EndMissionCheck(){
 Sleep,100000
 Loop{
@@ -74,14 +71,6 @@ ImageSearch, ox, oy, x1, y1, x2, y2,*20 endmission.png
 }
 
 }
-
-
-
-
-
-
-
-
 
 Esc::
 Pause
@@ -104,8 +93,4 @@ Sleep,1300
 EndMissionCheck() ;czeka na koniec misji
 Sleep,6800
 }
-
-;sranie w banie
-
-
 return
