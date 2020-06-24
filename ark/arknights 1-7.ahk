@@ -105,7 +105,7 @@ EndMissionCheck() ;czeka na koniec misji
 Sleep,6800
 }
 
-
+;sranie w banie
 
 
 return
