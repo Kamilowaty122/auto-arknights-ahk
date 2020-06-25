@@ -1,4 +1,15 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿;0.1 - initial release
+;0.2 - dodana losowość do klików i czasów czekania (czekanie jest kompletnie z dupy xd)
+;
+;
+;
+;
+;
+;
+;
+
+
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -9,7 +20,10 @@ Global x1:=0
 Global x2:=1920
 Global y1:=0
 Global y2:=1080  ;wielkość ekranu
+Global random:=0
 
+Coordmode, Pixel,Screen
+Coordmode, Mouse,Screen
 
 Click17(){
 
@@ -25,52 +39,66 @@ if ErrorLevel{
 		Msgbox,problem 17
 					 }
 			}
-		Click, %ox%, %oy%
+			Random, random,0,20
+			kurwax:=ox+random
+			Random, random,0,20	;randomizajca od chuja
+			kurway:=oy+random
+		Click, %kurwax%, %kurway%
 }
 
 ClickStart(){
 
-Coordmode, Pixel,Screen
-Coordmode, Mouse,Screen
-
-ImageSearch, ox, oy, x1, y1, x2, y2,*15 6sanity.png
+ImageSearch, ox, oy, x1, y1, x2, y2,*15 start.png
 	if ErrorLevel{
-		Msgbox,sorka start
+		Msgbox,no start
 			     }
 	else{
-		Click, %ox%, %oy%
+		Random, random,-50,60
+			kurwax:=ox+random
+		Random, random,-5,30
+			kurway:=oy+random
+		Click, %kurwax%, %kurway%
 		}
 }
+
 
 ClickMission(){
 
 ImageSearch, ox, oy, x1, y1, x2, y2,*15 mission.png
 	if ErrorLevel{
-		Msgbox,sorka misja
+		Msgbox,no mission
 			     }
 	else{
-		Click, %ox%, %oy%
+		Random, random,-5,80
+			kurwax:=ox+random
+		Random, random,-90,110	
+			kurway:=oy+random
+		Click, %kurwax%, %kurway%
 		}
 }
 
+
 EndMissionCheck(){
-Sleep,100000
+
+Sleep,80000
 Loop{
 Sleep,5000
 ImageSearch, ox, oy, x1, y1, x2, y2,*20 endmission.png
 	if ErrorLevel{
-		Msgbox,sorka koniec misja
+		;Msgbox,sorka koniec misja
 			     }
 	else{
 	
-	kurwax:=ox-150
-	kurway:=oy-150
+		Random, random,-250,600
+			kurwax:=ox+random
+		Random, random,-500,-60
+			kurway:=oy+random
 		Click, %kurwax%, %kurway%
 		break
 		}
 }
-
 }
+
 
 Esc::
 Pause
@@ -78,19 +106,33 @@ Suspend
 
 return
 
+
 ^j::
 
-Loop,3{
-Click17()
-Sleep,1700
+
+; Click17()
+; Sleep,1700
 
 ClickStart()
-Sleep,1800
+Random, random,1800,4900
+Sleep,%random%
 
 ClickMission()
-Sleep,1300
+Random, random,1400,3100
+Sleep,%random%
 
 EndMissionCheck() ;czeka na koniec misji
-Sleep,6800
-}
+Random, random,6800,10000
+Sleep,%random%
+
 return
+
+; debug shit
+
+; ^k::
+
+; Random, random,0,1000
+
+; Sleep,%random%
+; Msgbox,elo
+; return
