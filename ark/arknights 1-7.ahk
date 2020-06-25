@@ -13,6 +13,9 @@
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#Include images
+
+
 
 Global ox:=""
 Global oy:="" ;output x i y
@@ -32,9 +35,9 @@ Coordmode, Mouse,Screen
 
 Sleep,1000
 
-ImageSearch, ox, oy, x1, y1, x2, y2,*15 17.png
+ImageSearch, ox, oy, x1, y1, x2, y2,*15 images/17.png
 if ErrorLevel{
-		ImageSearch, ox, oy, x1, y1, x2, y2,*15 172.png
+		ImageSearch, ox, oy, x1, y1, x2, y2,*15 images/172.png
 		if ErrorLevel{
 		Msgbox,problem 17
 					 }
@@ -48,7 +51,7 @@ if ErrorLevel{
 
 ClickStart(){
 
-ImageSearch, ox, oy, x1, y1, x2, y2,*15 start.png
+ImageSearch, ox, oy, x1, y1, x2, y2,*15 images/start.png
 	if ErrorLevel{
 		Msgbox,no start
 			     }
@@ -64,7 +67,7 @@ ImageSearch, ox, oy, x1, y1, x2, y2,*15 start.png
 
 ClickMission(){
 
-ImageSearch, ox, oy, x1, y1, x2, y2,*15 mission.png
+ImageSearch, ox, oy, x1, y1, x2, y2,*15 images/mission.png
 	if ErrorLevel{
 		Msgbox,no mission
 			     }
@@ -83,7 +86,7 @@ EndMissionCheck(){
 Sleep,80000
 Loop{
 Sleep,5000
-ImageSearch, ox, oy, x1, y1, x2, y2,*20 endmission.png
+ImageSearch, ox, oy, x1, y1, x2, y2,*20 images/endmission.png
 	if ErrorLevel{
 		;Msgbox,sorka koniec misja
 			     }
@@ -112,7 +115,7 @@ return
 
 ; Click17()
 ; Sleep,1700
-
+Loop,3{
 ClickStart()
 Random, random,1800,4900
 Sleep,%random%
@@ -124,7 +127,7 @@ Sleep,%random%
 EndMissionCheck() ;czeka na koniec misji
 Random, random,6800,10000
 Sleep,%random%
-
+}
 return
 
 ; debug shit
